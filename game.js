@@ -42,19 +42,66 @@ let questionList = [
 ];
 
 function compChoice(answer) {
-  if (answer === questionList[0].answer) {
+  if (answer === questionList[questionCounter].answer) {
     console.log("correct");
+    questionCounter++;
+    score += 100;
+    updateScore();
+    switch (answer) {
+      case 1:
+        choice1.style.backgroundColor = "green";
+        break;
+      case 2:
+        choice2.style.backgroundColor = "green";
+        break;
+      case 3:
+        choice3.style.backgroundColor = "green";
+        break;
+      case 4:
+        choice4.style.backgroundColor = "green";
+        break;
+    }
+    window.setTimeout(() => {
+      resetColors();
+      displayQuestions();
+    }, 2000);
   } else {
     console.log("incorrect");
+    let choice = `choice${answer}`;
+    switch (answer) {
+      case 1:
+        choice1.style.backgroundColor = "red";
+        break;
+      case 2:
+        choice2.style.backgroundColor = "red";
+        break;
+      case 3:
+        choice3.style.backgroundColor = "red";
+        break;
+      case 4:
+        choice4.style.backgroundColor = "red";
+        break;
+    }
   }
+}
+
+function updateScore() {
+  score.innerHTML = score;
 }
 
 function displayQuestions() {
   question.innerHTML = questionList[questionCounter].question;
-  choice1.innerHTML = questionList[0].choice1;
-  choice2.innerHTML = questionList[0].choice2;
-  choice3.innerHTML = questionList[0].choice3;
-  choice4.innerHTML = questionList[0].choice4;
+  choice1.innerHTML = questionList[questionCounter].choice1;
+  choice2.innerHTML = questionList[questionCounter].choice2;
+  choice3.innerHTML = questionList[questionCounter].choice3;
+  choice4.innerHTML = questionList[questionCounter].choice4;
+}
+
+function resetColors() {
+  choice1.style.backgroundColor = "white";
+  choice2.style.backgroundColor = "white";
+  choice3.style.backgroundColor = "white";
+  choice4.style.backgroundColor = "white";
 }
 
 function main() {
