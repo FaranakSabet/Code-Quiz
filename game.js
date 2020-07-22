@@ -1,8 +1,11 @@
 const question = document.getElementById("question");
-const choices = Array.from(document.getElementsByClassName("choice-text"));
 const progressText = document.getElementById("progressText");
 const scoreText = document.getElementById("score");
 const progressBarFull = document.getElementById("progressBarFull");
+const choice1 = document.getElementById("choice1");
+const choice2 = document.getElementById("choice2");
+const choice3 = document.getElementById("choice3");
+const choice4 = document.getElementById("choice4");
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -10,22 +13,22 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let questions = [
+let questionList = [
   {
     question: "Inside which HTML element do we put the JavaScript??",
-    choice1: "<script>",
-    choice2: "<javascript>",
-    choice3: "<js>",
-    choice4: "<scripting>",
+    choice1: "&lt script &gt",
+    choice2: "&lt javascript &gt",
+    choice3: "&lt js &gt",
+    choice4: "&lt scripting &gt",
     answer: 1,
   },
   {
     question:
       "What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choice1: "<script href='xxx.js'>",
-    choice2: "<script name='xxx.js'>",
-    choice3: "<script src='xxx.js'>",
-    choice4: "<script file='xxx.js'>",
+    choice1: " &lt script href='xxx.js' &gt",
+    choice2: " &lt script name='xxx.js' &gt",
+    choice3: " &lt script src='xxx.js' &gt",
+    choice4: " &lt script file='xxx.js' &gt",
     answer: 3,
   },
   {
@@ -38,65 +41,36 @@ let questions = [
   },
 ];
 
-//CONSTANTS
-const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
-
-startGame = () => {
-  questionCounter = 0;
-  score = 0;
-  availableQuestions = [...questions];
-  getNewQuestion();
-};
-
-getNewQuestion = () => {
-  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-    localStorage.setItem("mostRecentScore".score);
-    return window.location.assign("/end.html");
+function compChoice(answer) {
+  if (answer === questionList[0].answer) {
+    console.log("correct");
+  } else {
+    console.log("incorrect");
   }
+}
 
-  progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+function displayQuestions() {
+  question.innerHTML = questionList[questionCounter].question;
+  choice1.innerHTML = questionList[0].choice1;
+  choice2.innerHTML = questionList[0].choice2;
+  choice3.innerHTML = questionList[0].choice3;
+  choice4.innerHTML = questionList[0].choice4;
+}
 
-  //Update the progress bar
-  progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
-  questionCounter++;
-  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-  currentQuestion = availableQuestions[questionIndex];
-  question.innerText = currentQuestion.question;
-
-  choices.forEach((choice) => {
-    const number = choice.dataset["number"];
-    choice.innerText = currentQuestion["choice" + number];
+function main() {
+  displayQuestions();
+  choice1.addEventListener("click", () => {
+    compChoice(1);
   });
-  availableQuestions.splice(questionIndex, 1);
-
-  acceptingAnswers = true;
-};
-
-choices.forEach((choice) => {
-  choice.addEventListener("click", (e) => {
-    if (!acceptingAnswers) return;
-
-    acceptingAnswers = false;
-    const selectedChoice = e.target;
-    const selectAnswer = selectedChoice.dataset["number"];
-
-    const classToApply =
-      selectAnswer == currentQuestion.answer ? "correct" : "incorrect";
-
-    if (classToApply === "correct") {
-      incrementScore(CORRECT_BONUS);
-    }
-    selectedChoice.parentElement.classList.add(classToApply);
-
-    setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(classToApply);
-      getNewQuestion();
-    }, 1000);
+  choice2.addEventListener("click", () => {
+    compChoice(2);
   });
-});
-incrementScore = (num) => {
-  score = +num;
-  scoreText.innerText = score;
-};
-startGame();
+  choice3.addEventListener("click", () => {
+    compChoice(3);
+  });
+  choice4.addEventListener("click", () => {
+    compChoice(4);
+  });
+}
+
+main();
