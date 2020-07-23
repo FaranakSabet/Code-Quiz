@@ -40,15 +40,15 @@ let questionList = [
     choice4: "if(i!=5)",
     answer: 4,
   },
-  {
-    question:
-      "What is the syntax for creating a function in JavaScript named as Geekfunc?",
-    choice1: "function = Geekfunc()",
-    choice2: "function Geekfunc()",
-    choice3: "function := Geekfunc()",
-    choice4: "function : Geekfunc()",
-    answer: 2,
-  },
+  // {
+  //   question:
+  //     "What is the syntax for creating a function in JavaScript named as Geekfunc?",
+  //   choice1: "function = Geekfunc()",
+  //   choice2: "function Geekfunc()",
+  //   choice3: "function := Geekfunc()",
+  //   choice4: "function : Geekfunc()",
+  //   answer: 2,
+  // },
 ];
 var scoreElement = document.getElementById("score");
 
@@ -100,8 +100,10 @@ function compChoice(answer) {
 }
 
 function updateScore() {
-  score.innerHTML = score;
-  // score++;
+  function updateScore() {
+    score++;
+    scoreText.innerHTML = score;
+  }
 }
 
 function displayQuestions() {
