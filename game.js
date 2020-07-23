@@ -6,7 +6,6 @@ const choice1 = document.getElementById("choice1");
 const choice2 = document.getElementById("choice2");
 const choice3 = document.getElementById("choice3");
 const choice4 = document.getElementById("choice4");
-// const choice5 = docuent.getElementById("choice5");
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -41,16 +40,16 @@ let questionList = [
     choice4: "if(i!=5)",
     answer: 4,
   },
-  //   {
-  // question: "What is the syntax for creating a function in JavaScript named as Geekfunc?",
-  // choice1: "function = Geekfunc() "
-  // choice2: "function Geekfunc() "
-  // choice3: "function := Geekfunc()"
-  // choice4: "function : Geekfunc()"
-  // answer: 2,
-  //   },
+  {
+    question:
+      "What is the syntax for creating a function in JavaScript named as Geekfunc?",
+    choice1: "function = Geekfunc()",
+    choice2: "function Geekfunc()",
+    choice3: "function := Geekfunc()",
+    choice4: "function : Geekfunc()",
+    answer: 2,
+  },
 ];
-var score = 0;
 var scoreElement = document.getElementById("score");
 
 function compChoice(answer) {
@@ -72,9 +71,9 @@ function compChoice(answer) {
       case 4:
         choice4.style.backgroundColor = "green";
         break;
-      // case 5:
-      //   choice2.style.backgroundColor = "green";
-      //   break;
+      case 5:
+        choice2.style.backgroundColor = "green";
+        break;
     }
     window.setTimeout(() => {
       resetColors();
@@ -96,9 +95,9 @@ function compChoice(answer) {
       case 4:
         choice4.style.backgroundColor = "red";
         break;
-      // case 5:
-      //   choice5.syle.backgroundColor = "red";
-      //   break;
+      case 5:
+        choice5.syle.backgroundColor = "red";
+        break;
     }
   }
 }
@@ -114,15 +113,14 @@ function displayQuestions() {
   choice2.innerHTML = questionList[questionCounter].choice2;
   choice3.innerHTML = questionList[questionCounter].choice3;
   choice4.innerHTML = questionList[questionCounter].choice4;
-  // choce5.innerHTML = questionList[questionCounter].choice5;
-}
+  
 
 function resetColors() {
   choice1.style.backgroundColor = "white";
   choice2.style.backgroundColor = "white";
   choice3.style.backgroundColor = "white";
   choice4.style.backgroundColor = "white";
-  // choice5.style.backgroundColor = "white";
+  choice5.style.backgroundColor = "white";
 }
 
 function main() {
@@ -139,9 +137,9 @@ function main() {
   choice4.addEventListener("click", () => {
     compChoice(4);
   });
-  // choice5.addEventListener("click", () => {
-  //   compChoice(5);
-  // });
+  choice5.addEventListener("click", () => {
+    compChoice(5);
+  });
 }
 
 main();
