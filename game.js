@@ -56,7 +56,10 @@ function compChoice(answer) {
   if (answer === questionList[questionCounter].answer) {
     console.log("correct");
     questionCounter++;
-    score += 100;
+    function updateScore() {
+      score++;
+      scoreText.innerHTML = score;
+    }
     updateScore();
     switch (answer) {
       case 1:
@@ -100,10 +103,8 @@ function compChoice(answer) {
 }
 
 function updateScore() {
-  function updateScore() {
-    score++;
-    scoreText.innerHTML = score;
-  }
+  score++;
+  scoreText.innerHTML = score;
 }
 
 function displayQuestions() {
