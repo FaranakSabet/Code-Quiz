@@ -33,7 +33,7 @@ let questionList = [
   },
   {
     question:
-      " How to write an ‘if’ statement for executing some code, if 'i' is NOT equal to 5?",
+      " How to write an 'if' statement for executing some code, if 'i' is NOT equal to 5?",
     choice1: "if(i<>5)",
     choice2: "if i<>5",
     choice3: "if i!=5",
@@ -95,9 +95,6 @@ function compChoice(answer) {
       case 4:
         choice4.style.backgroundColor = "red";
         break;
-      case 5:
-        choice5.syle.backgroundColor = "red";
-        break;
     }
   }
 }
@@ -113,14 +110,13 @@ function displayQuestions() {
   choice2.innerHTML = questionList[questionCounter].choice2;
   choice3.innerHTML = questionList[questionCounter].choice3;
   choice4.innerHTML = questionList[questionCounter].choice4;
-  
+}
 
 function resetColors() {
   choice1.style.backgroundColor = "white";
   choice2.style.backgroundColor = "white";
   choice3.style.backgroundColor = "white";
   choice4.style.backgroundColor = "white";
-  choice5.style.backgroundColor = "white";
 }
 
 function main() {
@@ -136,9 +132,6 @@ function main() {
   });
   choice4.addEventListener("click", () => {
     compChoice(4);
-  });
-  choice5.addEventListener("click", () => {
-    compChoice(5);
   });
 }
 
