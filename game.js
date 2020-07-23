@@ -6,6 +6,7 @@ const choice1 = document.getElementById("choice1");
 const choice2 = document.getElementById("choice2");
 const choice3 = document.getElementById("choice3");
 const choice4 = document.getElementById("choice4");
+const choice4 = docuent.getElementById("choice5");
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -15,16 +16,15 @@ let availableQuestions = [];
 
 let questionList = [
   {
-    question: "Inside which HTML element do we put the JavaScript??",
-    choice1: "&lt script &gt",
-    choice2: "&lt javascript &gt",
-    choice3: "&lt js &gt",
-    choice4: "&lt scripting &gt",
+    question: "What is the correct syntax for adding comments in JavaScript?",
+    choice1: "//This is a comment",
+    choice2: "-This is a comment",
+    choice3: "**This is a comment",
+    choice4: "/*This is a comment",
     answer: 1,
   },
   {
-    question:
-      "What is the correct syntax for referring to an external script called 'xxx.js'?",
+    question:"What is the correct syntax for referring to an external script called 'xxx.js'?",
     choice1: " &lt script href='xxx.js' &gt",
     choice2: " &lt script name='xxx.js' &gt",
     choice3: " &lt script src='xxx.js' &gt",
@@ -32,13 +32,21 @@ let questionList = [
     answer: 3,
   },
   {
-    question: " How do you write 'Hello World' in an alert box?",
-    choice1: "msgBox('Hello World');",
-    choice2: "alertBox('Hello World');",
-    choice3: "msg('Hello World');",
-    choice4: "alert('Hello World');",
+    question:" How to write an ‘if’ statement for executing some code, if 'i' is NOT equal to 5?",
+    choice1: "if(i<>5)",
+    choice2: "if i<>5",
+    choice3: "if i!=5",
+    choice4: "if(i!=5)",
     answer: 4,
   },
+    {
+  question: "What is the syntax for creating a function in JavaScript named as Geekfunc?",
+  choice1: "function = Geekfunc() "
+  choice2: "function Geekfunc() "
+  choice3: "function := Geekfunc()"
+  choice4: "function : Geekfunc()"
+  answer: 2,
+    },
 ];
 
 function compChoice(answer) {
@@ -59,6 +67,9 @@ function compChoice(answer) {
         break;
       case 4:
         choice4.style.backgroundColor = "green";
+        break;
+      case 5:
+        choice2.style.backgroundColor = "green";
         break;
     }
     window.setTimeout(() => {
@@ -81,6 +92,9 @@ function compChoice(answer) {
       case 4:
         choice4.style.backgroundColor = "red";
         break;
+     case 5:
+        choice5.syle.backgroundColor = "red";
+        break;
     }
   }
 }
@@ -95,6 +109,7 @@ function displayQuestions() {
   choice2.innerHTML = questionList[questionCounter].choice2;
   choice3.innerHTML = questionList[questionCounter].choice3;
   choice4.innerHTML = questionList[questionCounter].choice4;
+  choce5.innerHTML = questionList[questionCounter].choice5;
 }
 
 function resetColors() {
@@ -102,6 +117,7 @@ function resetColors() {
   choice2.style.backgroundColor = "white";
   choice3.style.backgroundColor = "white";
   choice4.style.backgroundColor = "white";
+  choice5.style.backgroundColor = "white";
 }
 
 function main() {
@@ -117,6 +133,9 @@ function main() {
   });
   choice4.addEventListener("click", () => {
     compChoice(4);
+  });
+  choice5.addEventListener("click", () => {
+    compChoice(5);
   });
 }
 
