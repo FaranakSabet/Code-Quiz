@@ -59,6 +59,14 @@ let questionList = [
     choice4: "function : Geekfunc()",
     answer: 2,
   },
+  {
+    quesion: "Which of the following is an advantage of using JavaScript?",
+    choice1: "Increased interactivity.",
+    choice2: "Less server interaction.",
+    choice3: "Immediate feedback from the users.",
+    choice4: "All of the above.",
+    answer: 4,
+  },
 ];
 
 function gameOver() {
@@ -67,7 +75,7 @@ function gameOver() {
     location.assign("end.html");
     console.log("gameover");
   }
-  if (questionCounter === 4) {
+  if (questionCounter === 5) {
     localStorage.setItem("score", score);
     location.assign("end.html");
     console.log("gameover");
