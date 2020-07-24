@@ -67,7 +67,7 @@ function gameOver() {
     location.assign("end.html");
     console.log("gameover");
   }
-  if (questionCounter === 3) {
+  if (questionCounter === 4) {
     localStorage.setItem("score", score);
     location.assign("end.html");
     console.log("gameover");
@@ -99,13 +99,18 @@ function compChoice(answer) {
         choice2.style.backgroundColor = "green";
         break;
     }
-    window.setTimeout(() => {
-      resetColors();
-      displayQuestions();
-    }, 2000);
+    if (questionCounter < questionList.length) {
+      window.setTimeout(() => {
+        resetColors();
+        displayQuestions();
+      }, 2000);
+    } else {
+      gameOver();
+    }
   } else {
     console.log("incorrect");
     questionCounter++;
+
     let choice = `choice${answer}`;
     switch (answer) {
       case 1:
@@ -121,10 +126,14 @@ function compChoice(answer) {
         choice4.style.backgroundColor = "red";
         break;
     }
-    window.setTimeout(() => {
-      resetColors();
-      displayQuestions();
-    }, 2000);
+    if (questionCounter < questionList.length) {
+      window.setTimeout(() => {
+        resetColors();
+        displayQuestions();
+      }, 2000);
+    } else {
+      gameOver();
+    }
   }
 }
 
