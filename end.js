@@ -1,12 +1,18 @@
 const username = document.getElementById("username");
 const saveScoreBtn = document.getElementById("saveScoreBtn");
 const finalScore = document.getElementById("finalScore");
-const mostRecentScore = localStorage.getItem("mostRecentScore");
+const finalUserName = document.getElementById("finalUserName");
+const mostRecentUserName = localStorage.getItem("userName");
+const mostRecentScore = localStorage.getItem("score");
+const newUserName = username.value;
+
 finalScore.innerText = mostRecentScore;
 
-username.addEventListener("keyup", () => {
-  saveScoreBtn.disabled = !username.Value;
-});
+finalUserName.innerHTML = mostRecentUserName;
+function saveUserName() {
+  localStorage.setItem(userName, newUserName);
+  console.log("click");
+}
 
 saveHighScore = (e) => {
   console.log("clicked the save button!");

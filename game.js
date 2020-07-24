@@ -1,17 +1,27 @@
 const question = document.getElementById("question");
 const progressText = document.getElementById("progressText");
 const scoreText = document.getElementById("score");
-const progressBarFull = document.getElementById("progressBarFull");
+const timer = document.getElementById("progressBarFull");
 const choice1 = document.getElementById("choice1");
 const choice2 = document.getElementById("choice2");
 const choice3 = document.getElementById("choice3");
 const choice4 = document.getElementById("choice4");
 
+let timeScore = 60;
 let currentQuestion = {};
 let acceptingAnswers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
+
+window.setInterval(() => {
+  if (timeScore >= 1) {
+    timeScore--;
+    timer.innerHTML = timeScore;
+  } else {
+    gameOver();
+  }
+}, 1000);
 
 let questionList = [
   {
@@ -40,26 +50,37 @@ let questionList = [
     choice4: "if(i!=5)",
     answer: 4,
   },
-  // {
-  //   question:
-  //     "What is the syntax for creating a function in JavaScript named as Geekfunc?",
-  //   choice1: "function = Geekfunc()",
-  //   choice2: "function Geekfunc()",
-  //   choice3: "function := Geekfunc()",
-  //   choice4: "function : Geekfunc()",
-  //   answer: 2,
-  // },
+  {
+    question:
+      "What is the syntax for creating a function in JavaScript named as Geekfunc?",
+    choice1: "function = Geekfunc()",
+    choice2: "function Geekfunc()",
+    choice3: "function := Geekfunc()",
+    choice4: "function : Geekfunc()",
+    answer: 2,
+  },
 ];
+
+function gameOver() {
+  if (timeScore === 0) {
+    localStorage.setItem("score", score);
+    location.assign("end.html");
+    console.log("gameover");
+  }
+  if (questionCounter === 3) {
+    localStorage.setItem("score", score);
+    location.assign("end.html");
+    console.log("gameover");
+  }
+}
+
 var scoreElement = document.getElementById("score");
 
 function compChoice(answer) {
   if (answer === questionList[questionCounter].answer) {
     console.log("correct");
     questionCounter++;
-    function updateScore() {
-      score++;
-      scoreText.innerHTML = score;
-    }
+    score += 1;
     updateScore();
     switch (answer) {
       case 1:
@@ -84,6 +105,7 @@ function compChoice(answer) {
     }, 2000);
   } else {
     console.log("incorrect");
+    questionCounter++;
     let choice = `choice${answer}`;
     switch (answer) {
       case 1:
@@ -99,11 +121,14 @@ function compChoice(answer) {
         choice4.style.backgroundColor = "red";
         break;
     }
+    window.setTimeout(() => {
+      resetColors();
+      displayQuestions();
+    }, 2000);
   }
 }
 
 function updateScore() {
-  score++;
   scoreText.innerHTML = score;
 }
 
